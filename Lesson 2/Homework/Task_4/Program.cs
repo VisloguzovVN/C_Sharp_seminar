@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-Console.Write("Write natural number N:  ");
+﻿Console.Write("Write natural number N:  ");
 int N = Convert.ToInt32(Console.ReadLine());
 if (N < 10)
 {
