@@ -1,38 +1,48 @@
 ﻿using System;
 using System.Linq;
 
+//Тело класса будет написано студентом. Класс обязан иметь статический метод PrintResult()
 class UserInputToCompileForTest
 { 
-    // Метод для подсчета количества элементов массива, попадающих в заданный диапазон
+    // Подсчет количества элементов массива, попадающих в заданный диапазон
     // numbers - массив, в котором ведется подсчет
     // minRange - минимальная граница диапазона
     // maxRange - максимальная граница диапазона
     public static int CountItemsRange(int[] numbers, int minRange, int maxRange)
     {
-        int count = 0;
-        foreach (int number in numbers)
+         int count = 0;
+      foreach (int number in numbers)
+        if ( minRange <=number && number <= maxRange)
         {
-            if (number >= minRange && number <= maxRange)
-            {
-                count++;
-            }
+          count++;
         }
-        return count;
+      return count;
     }
     
-    // Метод для вывода результата на экран
-    // count - количество элементов массива, попадающих в заданный диапазон
-    public static void PrintResult(int count)
+    public static void PrintResult(int[] array)
     {
-        Console.WriteLine(count);
+        
+          
+          int result = 0;
+          int minRange = 10;
+          int maxRange = 90;
+            foreach(int number in array) 
+            {
+                if (number >= minRange && maxRange >= number)
+                  result++;
+            }
+            
+      Console.WriteLine(result);
     }
-}
 
+}
+//Не удаляйте и не меняйте класс Answer!
 class Answer
 {
     public static void Main(string[] args)
     {
         int[] array;
+        
 
         if (args.Length >= 1) {
             // Объединяем все аргументы командной строки в одну строку
@@ -49,8 +59,6 @@ class Answer
            // Если аргументов на входе нет
             array = new int[] {1, 5, 10, 20, 30, 40, 99, 4, 90, 3}; // Создание массива
         }
-
-        int count = UserInputToCompileForTest.CountItemsRange(array, 10, 90);
-        UserInputToCompileForTest.PrintResult(count);
+        UserInputToCompileForTest.PrintResult(array);
     }
 }
