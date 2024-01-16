@@ -1,68 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-// Задача 2: Задайте массив на 10 целых чисел.
+﻿// Задача 2: Задайте массив на 10 целых чисел.
 // Напишите программу, которая определяет
 // количество чётных чисел в массиве.
 
-namespace Task_001
-{
-    public class Task_002
+using System;
+using System.Linq;
+
+//Тело класса будет написано студентом. Класс обязан иметь статический метод PrintResult()
+class UserInputToCompileForTest
+{ 
+    // Подсчет количества четных элементов массива
+    // numbers - массив, в котором ведется подсчет
+    public static int CountEvenItems(int[] numbers)
     {
-        public const int MIN = 1;
-        public const int MAX = 100;
-
-        public static void Main(string[] args) {
-            System.Console.Write("Введите размерность генерируемого массива: ");
-
-            int arraySize = GetArraySizeFromConsole();
-            while (arraySize < 0) {
-                arraySize = GetArraySizeFromConsole();
-            }
-
-            int[] array = GetArrayWithRandomValue(arraySize);
-
-            System.Console.WriteLine("Оригинальный массив:");
-            System.Console.WriteLine(PrintArray(array));
-
-            System.Console.WriteLine("Количество чётных элементов входящих в массив:");
-            System.Console.WriteLine(CountEvenNumber(array));
-        }
-
-        public static int GetArraySizeFromConsole() {
-            try{
-                return Convert.ToInt32(Console.ReadLine());
-            } catch (Exception)
-                {
-                System.Console.WriteLine("Введеное значение не ядляется числом. Попробуйте снова.");
-            }
-            return -1;
-        }
-
-        public static int[] GetArrayWithRandomValue(int size) {
-            int[] array = new int[size];
-            for(int i = 0; i < size; i++) {
-                array[i] = new Random().Next(MIN, MAX);
-            }
-            return array;
-        }
-
-        public static int CountEvenNumber(int[] array) {
-            int count = 0;
-            foreach(int item in array) {
-                if(item % 2 == 0) count++;
+        int count = 0;
+            foreach(int item in numbers) 
+            {
+                if(item % 2 == 0) 
+                count++;
             }
             return count;
-        }
+    }
+    
+    public static void PrintResult(int[] array)
+    {
+        Console.WriteLine(CountEvenItems(array));
+    }
+}
 
-        public static string PrintArray(int[] array) {
-            string result = "";
-            foreach(int item in array) {
-                result = result + item + " ";
-            }
-            return result;
+//Не удаляйте и не меняйте класс Answer!
+class Answer
+{
+    public static void Main(string[] args)
+    {
+        int[] array;
+        
+
+        if (args.Length >= 1) {
+            // Объединяем все аргументы командной строки в одну строку
+            string joinedArgs = string.Join(" ", args);
+
+            // Разделяем строку по запятой с пробелом и преобразуем в массив целых чисел
+            array = joinedArgs.Split(", ")
+                                  .Select(int.Parse)
+                                  .ToArray();
+            
+            // Теперь arr содержит преобразованные в целые числа из командной строки
+        
+        } else {
+           // Если аргументов на входе нет
+            array = new int[] {2, 5, 2, 3, 6, 3, 7, 8, 2, 4}; // Создание массива
         }
+        UserInputToCompileForTest.PrintResult(array);
     }
 }
