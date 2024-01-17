@@ -1,7 +1,4 @@
-﻿//Задайте массив из вещественных чисел с ненулевой дробной частью. 
-//Найдите разницу между максимальным и минимальным элементов массива.
-
-using System;
+﻿using System;
 using System.Linq;
 
 //Тело класса будет написано студентом. Класс обязан иметь статический метод PrintResult()
@@ -37,25 +34,19 @@ class UserInputToCompileForTest
     
     public static void PrintResult(double[] array)
     {
-            
             double maxVal = array[0];
             double minVal = array[0];
-            for (int i = 0; i < array.Length; i++)
+      foreach(double item in array)
             {
-                if(array[i] > maxVal)
-                maxVal = array[i];
-                
-                if (array[i] <= minVal)
-                minVal = array[i];
-                
+                if(item < minVal) 
+                  minVal = item;
+                if(item > maxVal) 
+                  maxVal = item;
             }
-
-
             double dif = maxVal - minVal;
       Console.WriteLine(dif);
     }
 }
-
 
 //Не удаляйте и не меняйте класс Answer!
 class Answer
@@ -78,8 +69,7 @@ class Answer
         
         } else {
            // Если аргументов на входе нет
-            array = new double[] {-3.01, 3.01, 3.01, 3.01, 3.01, 3.01, 3.01}; // Создание массива
-            //{3.01, 3.01, 3.01, 3.01, 3.01, 3.01, 3.01} 0.25, 5.4, 1.3, 2.1, 3.8, 5.2, 3.01
+            array = new double[] {3.01, 3.01, 3.01, 3.01, 3.01, 3.01, 3.01}; // Создание массива
         }
         UserInputToCompileForTest.PrintResult(array);
     }
